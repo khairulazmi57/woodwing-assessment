@@ -23,7 +23,7 @@ public class DistanceserviceApplication {
 	}
 
 	@GetMapping("/convert2")
-	public Response convert2(
+	public String convert2(
 			@RequestParam double distance1,
 			@RequestParam String unit1,
 			@RequestParam double distance2,
@@ -34,7 +34,7 @@ public class DistanceserviceApplication {
 		DistanceConverter converter = new DistanceConverter();
 		double total = converter.convert(distance1, unit1, distance2, unit2, outputUnit);
 
-		return new Response(total, outputUnit);
+		return new Response(total, outputUnit).toString();
 
 	}
 
@@ -68,6 +68,11 @@ class Response {
 
 	public void setUnit(String unit) {
 		this.unit = unit;
+	}
+
+	@Override
+	public String toString() {
+		return "total = " + total + " " + unit;
 	}
 
 }
