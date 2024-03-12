@@ -12,19 +12,62 @@ public class DistanceserviceApplication {
 
 	@GetMapping("/convert")
 	public double convert(
-		@RequestParam double distance1,
-		@RequestParam String unit1,
-		@RequestParam double distance2,
-		@RequestParam String unit2,
-		@RequestParam String outputUnit
-	) {
+			@RequestParam double distance1,
+			@RequestParam String unit1,
+			@RequestParam double distance2,
+			@RequestParam String unit2,
+			@RequestParam String outputUnit) {
 		DistanceConverter converter = new DistanceConverter();
 		return converter.convert(distance1, unit1, distance2, unit2, outputUnit);
 
 	}
 
+	@GetMapping("/convert2")
+	public Response convert2(
+			@RequestParam double distance1,
+			@RequestParam String unit1,
+			@RequestParam double distance2,
+			@RequestParam String unit2,
+			@RequestParam String outputUnit
+	) {
+
+		DistanceConverter converter = new DistanceConverter();
+		double total = converter.convert(distance1, unit1, distance2, unit2, outputUnit);
+
+		return new Response(total, outputUnit);
+
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(DistanceserviceApplication.class, args);
+	}
+
+}
+
+class Response {
+
+	private double total;
+	private String unit;
+
+	public Response(double total, String unit) {
+		this.total = total;
+		this.unit = unit;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 }
