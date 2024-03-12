@@ -11,19 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DistanceserviceApplication {
 
 	@GetMapping("/convert")
-	public double convert(
-			@RequestParam double distance1,
-			@RequestParam String unit1,
-			@RequestParam double distance2,
-			@RequestParam String unit2,
-			@RequestParam String outputUnit) {
-		DistanceConverter converter = new DistanceConverter();
-		return converter.convert(distance1, unit1, distance2, unit2, outputUnit);
-
-	}
-
-	@GetMapping("/convert2")
-	public String convert2(
+	public String convert(
 			@RequestParam double distance1,
 			@RequestParam String unit1,
 			@RequestParam double distance2,
