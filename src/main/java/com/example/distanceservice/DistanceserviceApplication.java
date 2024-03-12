@@ -97,7 +97,7 @@ class DistanceConverter {
 			total = metersToYards(total);
 		}
 
-		return total;
+		return (double) Math.round(total * 100) / 100;
 
 	}
 
